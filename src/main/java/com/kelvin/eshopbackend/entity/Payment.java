@@ -15,15 +15,18 @@ import java.util.Date;
  */
 
 @Data
-@Entity(name = "payment")
+@Entity
+@Table(name = "payment")
 public class Payment {
 
     @Id
     @GeneratedValue(generator="sys_uid")
     @GenericGenerator(name="sys_uid", strategy="uuid")
+    @Column(length = 32)
     private String id;
     @Column(length = 16)
     private String amount;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date  payTime;
     private PayType payType;
     private OrderStatus payStatus;

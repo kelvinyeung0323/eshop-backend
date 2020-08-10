@@ -18,9 +18,15 @@ public class GoodsSku {
     @Id
     @GeneratedValue(generator="sys_uid")
     @GenericGenerator(name="sys_uid", strategy="uuid")
+    @Column(length = 32)
     private String id;
+    /**
+     * 存储为key1:value1,key2:value2
+     * key为属性分类
+     * value为属性代码
+     * **/
     @Column(length = 255)
-    private String attrPath;
+    private String attribues;
     @Column(length = 1200)
     private String bannerImages;
     @Column(length = 255)
@@ -30,7 +36,7 @@ public class GoodsSku {
 
     private Integer salesVolume;
     //规格参数
-    @Column(length = 255)
+    @Column(columnDefinition ="TEXT")
     private String specs;
     //库存
     private Integer stock;

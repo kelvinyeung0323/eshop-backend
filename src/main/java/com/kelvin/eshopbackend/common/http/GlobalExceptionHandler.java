@@ -45,19 +45,19 @@ public class GlobalExceptionHandler {
     //    return new RestResult();
     //}
 
-    @ExceptionHandler(BizException.class)
+    @ExceptionHandler({BizException.class})
     @ResponseBody
     public RestResult handleException(HttpServletRequest request ,HttpServletResponse  response, BizException e ) throws IOException {
 
         RestResult result = new RestResult<>();
         result.setPath(request.getServletPath());
-        result.setStatus(HttpStatus.BAD_REQUEST.value());
+        result.setStatus(e.getStatus().value());
         result.setTimestamp(new Date());
-        result.setError(HttpStatus.BAD_REQUEST.getReasonPhrase());
+        result.setError(e.getStatus().getReasonPhrase());
         result.setMessage(e.getMessage());
         //设置response状态
-        response.setStatus(HttpStatus.BAD_REQUEST.value());
-        //Map<String,Object> map =  errorAttributes.getErrorAttributes(new DispatcherServletWebRequest(request,response) ,errorAttributeOptions );
+        response.setStatus(response.getStatus());
+        //\Map<String,Object> map =  errorAttributes.getErrorAttributes(new DispatcherServletWebRequest(request,response) ,errorAttributeOptions );
         //response.sendError(HttpStatus.BAD_REQUEST.value(),e.getMessage());
         return result;
     }

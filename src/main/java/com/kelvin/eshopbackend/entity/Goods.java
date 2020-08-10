@@ -19,11 +19,12 @@ public class Goods {
     @Id
     @GeneratedValue(generator="sys_uid")
     @GenericGenerator(name="sys_uid", strategy="uuid")
+    @Column(length = 32)
     private String id;
 
-    @Column(length = 1200)
-    private String introImages;
-    @Column(length = 1200)
+    @Column(columnDefinition ="TEXT")
+    private String intro;
+    @Column(columnDefinition ="TEXT")
     private String questions;
 
     @OneToOne()

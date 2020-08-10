@@ -10,4 +10,8 @@ import com.kelvin.eshopbackend.entity.User;
 public interface UserService {
 
     User findUserByName(String username);
+
+    User saveUser(User user);
+
+
 }

@@ -16,6 +16,7 @@ import java.util.List;
 @Table(name = "area")
 public class Area {
 
+    @Column(length = 32)
     @Id
     @GeneratedValue(generator="sys_uid")
     @GenericGenerator(name="sys_uid", strategy="uuid")

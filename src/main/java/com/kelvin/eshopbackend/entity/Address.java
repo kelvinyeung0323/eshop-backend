@@ -11,9 +11,11 @@ import javax.persistence.*;
  * @description:
  */
 @Data
-@Entity(name = "address")
+@Entity
+@Table(name = "address")
 public class Address {
 
+    @Column(length = 32)
     @Id
     @GeneratedValue(generator="sys_uid")
     @GenericGenerator(name="sys_uid", strategy="uuid")

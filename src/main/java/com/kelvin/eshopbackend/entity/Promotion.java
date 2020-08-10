@@ -14,18 +14,24 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table
+@Table(name = "promotion")
 public class Promotion {
 
     @Id
     @GeneratedValue(generator="sys_uid")
     @GenericGenerator(name="sys_uid", strategy="uuid")
+    @Column(length = 32)
     private String id;
 
     @Column(length = 255)
     private String title;
 
+    @Temporal(TemporalType.TIMESTAMP)
     private Date startTime;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date endTime;
+
+    //@Column(columnDefinition = "bit(1) default 0")
+    private Boolean enabled;
     //TODO:
 }

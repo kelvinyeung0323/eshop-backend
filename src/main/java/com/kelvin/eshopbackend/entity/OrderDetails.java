@@ -18,6 +18,7 @@ public class OrderDetails {
     @Id
     @GeneratedValue(generator="sys_uid")
     @GenericGenerator(name="sys_uid", strategy="uuid")
+    @Column(length = 32)
     private String id;
     @Column(length = 1200)
     private String description;

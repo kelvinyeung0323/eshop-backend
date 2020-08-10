@@ -3,6 +3,7 @@ package com.kelvin.eshopbackend.entity;
 import com.kelvin.eshopbackend.enums.OrderStatus;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 
@@ -20,10 +21,12 @@ public class PayRecord {
     @Id
     @GeneratedValue(generator="sys_uid")
     @GenericGenerator(name="sys_uid", strategy="uuid")
+    @Column(length = 32)
     private String id;
 
-    @Column
+    @Column(name = "notice")
     private String notice;
+
 
     private String payRequest;
 

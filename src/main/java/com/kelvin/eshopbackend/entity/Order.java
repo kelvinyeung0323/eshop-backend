@@ -5,6 +5,7 @@ import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,6 +21,7 @@ public class Order {
     @Id
     @GeneratedValue(generator="orderGenerator")
     @GenericGenerator(name="orderGenerator", strategy="com.kelvin.eshopbackend.common.idgenerator.OrderGenerator")
+    @Column(length = 32)
     private String orderNo;
     @OneToOne(targetEntity = User.class)
     private User user;
@@ -64,5 +66,8 @@ public class Order {
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "order")
     private List<OrderDetails> orderDetails;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createTime;
 
 }

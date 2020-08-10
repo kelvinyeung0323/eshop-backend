@@ -1,5 +1,10 @@
 server:
   port: 8080
+  error:
+    include-stacktrace: never
+springdoc:
+  api-docs:
+    enabled: true
 spring:
   application:
     name: eshop
@@ -16,7 +21,7 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-
+    generate-ddl: true
 
 logging:
   level:

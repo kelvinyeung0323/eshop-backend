@@ -1,0 +1,36 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true   #开启从注册中心动态创建路由的功能，利用微服务名进行路由
+      routes: # 可以配置多个路由
+      - id: order_route # 路由id，没有固定规则但要求唯一
+        uri: lb://order-service # 匹配后提供服务的路由地址
+        predicates:
+        - Path=/orders # 路径相匹配的进行路由
+        filters:
+        - TokenRelay=
+      - id: auth_route # 路由id，没有固定规则但要求唯一
+        uri: http://localhost:8081 # 匹配后提供服务的路由地址
+        predicates:
+        - Path=/oauth/** # 路径相匹配的进行路由
+        filters:
+        - TokenRelay=
+      enabled: true  #If you include the starter, but you do not want the gateway to be enabled, set spring.cloud.gateway.enabled=false.
+
+    nacos:
+      server-addr: 192.168.3.22:8848 # Nacos地址
+
+
+logging:
+  level:
+    root: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.security.oauth2: DEBUG
+    org.springframework.cloud.gateway: DEBUG

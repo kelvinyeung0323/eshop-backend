@@ -1,0 +1,79 @@
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd"
+                 version="2.1">
+    <package>com.kelvin.eshop.order.entity</package>
+
+    <entity class="com.kelvin.eshop.order.entity.Order">
+        <table name="user_order"/>
+        <attributes>
+            <id name="orderNo">
+                <column name="order_no" length="32"/>
+                <generated-value  generator="com.kelvin.eshopbackend.base.common.idgenerator.OrderGenerator"/>
+            </id>
+            <basic name="userId"> <column name="user_id" length="32"/></basic>
+            <basic name="address"><column name="address" length="255"/></basic>
+            <!--    收货人地址-->
+            <basic name="address" ><column name="address" length="255"/></basic>
+            <!--收货人电话-->
+            <basic name="phoneNo" ><column name="phone_no" length="16"/>
+            </basic>
+
+            <!--收货人-->
+            <basic name="consignee"><column name="consignee" length="64" type="string"/></basic>
+            <!--评价状态-->
+            <basic name="commentStatus"><column name="comment_status" length="16"  />  </basic>
+            <!--运送状态-->
+            <basic name="shipStatus"><column name="ship_status" length="16" />  </basic>
+            <!--支付状态-->
+            <basic name="payStatus"><column name="pay_status" length="16" />  </basic>
+            <!-- 折扣-->
+            <basic name="discountAmt"><column name="discount_amt" length="16"  />  </basic>
+            <!-- 商品金额-->
+            <basic name="goodsAmt"><column name="goods_amt" length="16" />  </basic>
+            <!-- 优惠券-->
+            <basic name="couponAmt"><column name="coupon_amt" length="16"  />  </basic>
+            <!-- 支付金额-->
+            <basic name="payAmt" ><column name="pay_amt" length="16"  />  </basic>
+            <!-- 运费-->
+            <basic name="shippingFee"><column name="shipping_fee" length="16" />  </basic>
+            <!--  备注-->
+            <basic name="remark" ><column name="remark" length="255"  /></basic>
+            <!-- 订单详情-->
+            <!-- 参考:  https://mkyong.com/hibernate/hibernate-one-to-many-relationship-example/-->
+            <one-to-many name="orderDetails" mapped-by="order">
+                <cascade></cascade>
+                <map-key></map-key>
+                <map-key-class class="OrderDetails"/>
+                <map-key-column name="order_no" length="32"/>
+            </one-to-many>
+
+            <!--创建时间-->
+            <basic name="createTime">
+               <column name="create_time"/>
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="OrderDetails">
+        <table name="order_details"/>
+        <attributes>
+            <id name="id">
+                <column name="id" length="32"/>
+                <generated-value strategy="AUTO" generator="uuid">
+                </generated-value>
+            </id>
+            <basic name="description"><column length="1200"  /></basic>
+            <basic name="image"><column name="image" length="1200"  /></basic>
+            <basic name="price"><column name="price" length="16" /></basic>
+            <basic name="title"><column name="title" length="255" /></basic>
+            <basic name="goodsSkuId"><column name="goods_sku_id" length="255"/></basic>
+            <many-to-one name="order">
+                <join-table
+            </many-to-one>
+            <many-to-one name="order" class="com.kelvin.eshop.order.entity.Order" column="order_no" fetch="select" not-null="true"/>
+
+        </attributes>
+    </entity>
+
+</entity-mappings>

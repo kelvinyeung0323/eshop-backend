@@ -1,0 +1,52 @@
+# 因为不使用 Spring Boot 内置的应用服务所以这里并不需要指定 server.port
+server:
+  port: 8080
+  error:
+    include-stacktrace: never
+springdoc:
+  api-docs:
+    enabled: true
+spring:
+  application:
+    name: web-api
+  main:
+    allow-bean-definition-overriding: true #支持名称相同的bean的覆盖,默认true
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration
+  cloud:
+    nacos:
+      username: nacos
+      password: nacos
+      discovery:
+        server-addr: 192.168.3.22:8848
+        enabled: true
+        register-enabled: true
+
+
+#dubbo配置 dubbo.protocols：配置两种协议，其中rest协议定义 8080 端口并使用 netty 作为应用服务器
+dubbo:
+  cloud:
+    subscribed-services: goods-service
+  protocol:
+    name: dubbo
+    port: -1
+  consumer:
+    check: false
+    default: true
+
+
+eureka:
+  client:
+    enabled: false
+
+
+logging:
+  level:
+    root: DEBUG
+    org.springframework.web: INFO
+
+
+

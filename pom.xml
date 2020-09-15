@@ -11,8 +11,12 @@
         <module>base</module>
         <module>user-service</module>
         <module>payment-service</module>
-        <module>admin-service</module>
+        <module>user-service-api</module>
+        <module>order-service-api</module>
+        <module>goods-service-api</module>
+        <module>web-admin</module>
         <module>web-api</module>
+        <module>web-base</module>
     </modules>
     <groupId>com.kelvin</groupId>
     <artifactId>eshop-backend</artifactId>
@@ -27,7 +31,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <spring-cloud.version>Hoxton.SR6</spring-cloud.version>
         <spring-boot.version>2.3.1.RELEASE</spring-boot.version>
-        <alibaba-cloud.version>2.2.0.RELEASE</alibaba-cloud.version>
+        <alibaba-cloud.version>2.2.2.RELEASE</alibaba-cloud.version>
         <mysql.version>5.1.47</mysql.version>
         <druid.verison>1.1.16</druid.verison>
     </properties>
@@ -37,52 +41,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-quartz</artifactId>-->
-        <!--</dependency>-->
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-devtools</artifactId>-->
-            <!--<scope>runtime</scope>-->
-            <!--<optional>true</optional>-->
-        <!--</dependency>-->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.49</version>
-            <scope>runtime</scope>
-        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+
 
         <!--jwt start-->
         <dependency>
@@ -159,7 +124,7 @@
     </dependencyManagement>
 
     <build>
-        <finalName>eshop</finalName>
+<!--        <finalName>eshop</finalName>-->
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -173,4 +138,19 @@
         </plugins>
     </build>
 
+
+    <repositories><!-- 代码库 -->
+        <repository>
+            <id>maven-ali</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>fail</checksumPolicy>
+            </snapshots>
+        </repository>
+    </repositories>
 </project>

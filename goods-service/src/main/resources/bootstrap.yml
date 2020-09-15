@@ -1,0 +1,25 @@
+# 因为不使用 Spring Boot 内置的应用服务所以这里并不需要指定 server.port
+#server:
+#  port: 8081
+spring:
+  application:
+    name: goods-service
+  main:
+    allow-bean-definition-overriding: true #支持名称相同的bean的覆盖,默认true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.3.22:8848
+
+
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.3.22:3306/eshop_db_goods?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false
+    username: root
+    password: 123456
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true

@@ -4,12 +4,16 @@
                  version="2.1">
     <package>com.kelvin.eshop.order.entity</package>
 
-    <entity class="com.kelvin.eshop.order.entity.Order">
+
+
+    <entity class="com.kelvin.eshop.order.entity.Order" name="order">
         <table name="user_order"/>
+
         <attributes>
             <id name="orderNo">
                 <column name="order_no" length="32"/>
-                <generated-value  generator="com.kelvin.eshopbackend.base.common.idgenerator.OrderGenerator"/>
+                <generated-value strategy="IDENTITY" generator=""/>
+                <!--<generated-value strategy="IDENTITY"/>-->
             </id>
             <basic name="userId"> <column name="user_id" length="32"/></basic>
             <basic name="address"><column name="address" length="255"/></basic>
@@ -20,7 +24,7 @@
             </basic>
 
             <!--收货人-->
-            <basic name="consignee"><column name="consignee" length="64" type="string"/></basic>
+            <basic name="consignee"><column name="consignee" length="64"/></basic>
             <!--评价状态-->
             <basic name="commentStatus"><column name="comment_status" length="16"  />  </basic>
             <!--运送状态-->
@@ -39,40 +43,53 @@
             <basic name="shippingFee"><column name="shipping_fee" length="16" />  </basic>
             <!--  备注-->
             <basic name="remark" ><column name="remark" length="255"  /></basic>
-            <!-- 订单详情-->
-            <!-- 参考:  https://mkyong.com/hibernate/hibernate-one-to-many-relationship-example/-->
-            <one-to-many name="orderDetails" mapped-by="order">
-                <cascade></cascade>
-                <map-key></map-key>
-                <map-key-class class="OrderDetails"/>
-                <map-key-column name="order_no" length="32"/>
-            </one-to-many>
-
             <!--创建时间-->
             <basic name="createTime">
-               <column name="create_time"/>
+                <column name="create_time"/>
             </basic>
+            <!-- 订单详情-->
+            <!-- 参考:  https://mkyong.com/hibernate/hibernate-one-to-many-relationship-example/-->
+            <one-to-many name="orderDetails" mapped-by="order" fetch="LAZY">
+            </one-to-many>
+
         </attributes>
     </entity>
 
-    <entity class="OrderDetails">
+    <entity class="OrderDetails" name="orderDetails">
         <table name="order_details"/>
         <attributes>
             <id name="id">
                 <column name="id" length="32"/>
-                <generated-value strategy="AUTO" generator="uuid">
-                </generated-value>
+                <!--<generated-value strategy="IDENTITY" />-->
             </id>
             <basic name="description"><column length="1200"  /></basic>
             <basic name="image"><column name="image" length="1200"  /></basic>
             <basic name="price"><column name="price" length="16" /></basic>
             <basic name="title"><column name="title" length="255" /></basic>
             <basic name="goodsSkuId"><column name="goods_sku_id" length="255"/></basic>
-            <many-to-one name="order">
-                <join-table
+            <many-to-one name="order" target-entity="Order" fetch="LAZY">
+                <join-column name="order_no"/>
             </many-to-one>
-            <many-to-one name="order" class="com.kelvin.eshop.order.entity.Order" column="order_no" fetch="select" not-null="true"/>
 
+        </attributes>
+    </entity>
+
+    <entity class="CartItem" name="cartItem">
+        <table name="cart"/>
+        <attributes>
+            <id name="id">
+                <column name="id" length="32"/>
+                <!--<generated-value strategy=""/>-->
+            </id>
+            <basic name="qty">
+                <column name="qty"/>
+            </basic>
+            <basic name="goodsSkuId">
+                <column name="goods_sku_id"/>
+            </basic>
+            <basic name="userId">
+                <column name="user_id" length="32"/>
+            </basic>
         </attributes>
     </entity>
 

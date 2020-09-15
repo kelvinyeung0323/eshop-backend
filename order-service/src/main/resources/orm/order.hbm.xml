@@ -5,6 +5,7 @@
 <!--https://github.com/damienbeaufils/spring-boot-clean-architecture-demo/blob/master/src/main/resources/db/mappings/dummy.xml-->
 <!--<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" version="2.0">-->
 <hibernate-mapping package="com.kelvin.eshop.order.entity" >
+
     <!-- 参考:https://docs.jboss.org/hibernate/orm/5.4/userguide/html_single/Hibernate_User_Guide.html#identifiers-->
     <class entity-name="com.kelvin.eshop.order.entity.Order" table="user_order">
         <id name="orderNo" column="order_no" length="32" type="string">

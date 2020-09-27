@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- 参考:https://docs.jboss.org/hibernate/orm/5.4/userguide/html_single/Hibernate_User_Guide.html#identifiers-->
+<hibernate-mapping package="com.kelvin.eshop.goods.entity">
+
+    <class name="Category" table="category"  >
+        <id name="id" column="id" length="32" type="string">
+            <generator class="uuid"></generator>
+        </id>
+        <property name="url" column="url" length="255" type="string" />
+
+        <property name="code" column="code" length="32" type="string"/>
+        <property name="icon" column="icon" length="255" type="string"/>
+        <property name="name" column="name" length="64" type="string"/>
+        <property name="seq" column="seq" type="integer"/>
+        <property name="lvl" column="lvl" type="integer"/>
+
+        <property name="enabled" column="enabled" type="java.lang.Boolean"/>
+
+        <many-to-one name="parent" column="parent_id" class="Category" lazy="proxy"/>
+
+        <set name="subCategories" inverse="true" >
+            <key column="parent_id" not-null="true"/>
+            <one-to-many class="Category"/>
+        </set>
+
+    </class>
+
+
+</hibernate-mapping>

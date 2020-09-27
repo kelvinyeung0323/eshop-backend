@@ -1,6 +1,8 @@
 package com.kelvin.eshop.goods.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -12,27 +14,14 @@ import java.util.List;
  * @description:
  */
 @Data
-@Entity
-@Table(name = "goods")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Goods {
 
-    @Id
-    @GeneratedValue(generator="sys_uid")
-    @GenericGenerator(name="sys_uid", strategy="uuid")
-    @Column(length = 32)
     private String id;
-
-    @Column(columnDefinition ="TEXT")
     private String intro;
-    @Column(columnDefinition ="TEXT")
     private String questions;
-
-    @OneToOne()
     private Category category;
-
-    @OneToMany(mappedBy = "goods",fetch = FetchType.LAZY)
     private List<GoodsAttribute> goodsAttributes;
-
-    @OneToMany(mappedBy = "goods",fetch = FetchType.LAZY)
     private List<GoodsSku> goodsSkus;
 }

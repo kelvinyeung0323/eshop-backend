@@ -1,5 +1,6 @@
 package com.kelvin.eshop.goods.service.impl;
 
+import com.kelvin.eshop.goods.entity.Goods;
 import com.kelvin.eshop.goods.entity.GoodsAttribute;
 import com.kelvin.eshop.goods.entity.GoodsSku;
 import com.kelvin.eshop.goods.repository.GoodsAttributeRepository;
@@ -54,6 +55,10 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public List<GoodsAttribute> getGoodsAttribute(String goodsId) {
+
+        Goods goods  = new Goods();
+        goods.setIntro("hello world");
+        goodsRepository.save(goods);
       return   goodsAttributeRepository.findAllByGoodsId(goodsId);
     }
 

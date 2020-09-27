@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- 参考:https://docs.jboss.org/hibernate/orm/5.4/userguide/html_single/Hibernate_User_Guide.html#identifiers-->
+<hibernate-mapping package="com.kelvin.eshop.goods.entity">
+
+    <class name="Comment" table="comment"  >
+        <id name="id" column="id" length="32" type="string">
+            <generator class="uuid"></generator>
+        </id>
+        <property name="star" column="star" type="int" />
+
+        <property name="commentTime" column="comment_time" type="timestamp"/>
+
+        <property name="content" column="content" type="text"/>
+        <property name="goodsId" column="goods_id" length="32" type="string"/>
+        <property name="orderId" column="order_id" length="32" type="string"/>
+        <property name="userId" column="user_id" length="32" type="string"/>
+        <property name="images" column="images" type="text"/>
+    </class>
+
+
+
+</hibernate-mapping>

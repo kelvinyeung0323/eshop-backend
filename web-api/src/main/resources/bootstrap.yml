@@ -24,12 +24,18 @@ spring:
         server-addr: 192.168.3.22:8848
         enabled: true
         register-enabled: true
+  zipkin:
+    base-url: http://192.168.3.22:9411
+    discovery-client-enabled: false
+  sleuth:
+    sampler:
+      probability: 1.0 #采样百分比
 
 
 #dubbo配置 dubbo.protocols：配置两种协议，其中rest协议定义 8080 端口并使用 netty 作为应用服务器
 dubbo:
   cloud:
-    subscribed-services: goods-service
+    subscribed-services: goods-service,order-service
   protocol:
     name: dubbo
     port: -1

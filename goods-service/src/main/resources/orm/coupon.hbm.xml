@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- 参考:https://docs.jboss.org/hibernate/orm/5.4/userguide/html_single/Hibernate_User_Guide.html#identifiers-->
+<hibernate-mapping package="com.kelvin.eshop.goods.entity">
+
+    <class name="Coupon" table="coupon"  >
+        <id name="id" column="id" length="32" type="string">
+            <generator class="uuid"></generator>
+        </id>
+        <property name="endDate" column="end_date" type="timestamp" />
+
+        <property name="startDate" column="start_date" type="timestamp"/>
+
+        <property name="scope" column="scope" length="255" type="string"/>
+        <property name="title" column="title" length="255" type="string"/>
+    </class>
+
+
+
+</hibernate-mapping>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- 参考:https://docs.jboss.org/hibernate/orm/5.4/userguide/html_single/Hibernate_User_Guide.html#identifiers-->
+<hibernate-mapping package="com.kelvin.eshop.goods.entity">
+
+    <class name="SpecialColumn" table="special_column"  >
+        <id name="id" column="id" length="32" type="string">
+            <generator class="uuid"></generator>
+        </id>
+        <property name="title" column="title" length="128"  type="string" />
+
+        <property name="banner" column="banner" length="255" type="string"/>
+
+        <property name="startTime" column="start_time" type="timestamp"/>
+        <property name="endTime" column="end_time" type="timestamp"/>
+<!--        <property name="goodsSkus" column="order_id" length="32" type="string"/>-->
+        <property name="enabled" column="is_enabled" type="boolean"/>
+        <set name="goodsSkus" outer-join="true">
+            <key></key>
+            <one-to-many class="GoodsSku"></one-to-many>
+        </set>
+    </class>
+
+
+
+</hibernate-mapping>

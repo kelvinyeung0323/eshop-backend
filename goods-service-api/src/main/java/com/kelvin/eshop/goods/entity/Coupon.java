@@ -1,6 +1,8 @@
 package com.kelvin.eshop.goods.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -12,21 +14,13 @@ import java.util.Date;
  * @description:
  */
 @Data
-@Entity
-@Table(name = "coupon")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Coupon {
 
-    @Id
-    @GeneratedValue(generator="sys_uid")
-    @GenericGenerator(name="sys_uid", strategy="uuid")
-    @Column(length = 32)
     private String id;
-    @Temporal(TemporalType.TIMESTAMP)
     private Date endDate;
     private Date startDate;
-    @Column(length = 255)
     private String scope;
-
-    @Column(length = 255)
     private String title;
 }

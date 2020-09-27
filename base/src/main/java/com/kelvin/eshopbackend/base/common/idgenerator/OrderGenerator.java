@@ -3,6 +3,7 @@ package com.kelvin.eshopbackend.base.common.idgenerator;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.id.IdentifierGenerator;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -13,6 +14,7 @@ import java.time.format.DateTimeFormatter;
  * @createdAt: 2020/8/9 17:26
  * @description:
  */
+@Component
 public class OrderGenerator implements IdentifierGenerator {
 
     @Override

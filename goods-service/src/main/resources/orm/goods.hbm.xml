@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- 参考:https://docs.jboss.org/hibernate/orm/5.4/userguide/html_single/Hibernate_User_Guide.html#identifiers-->
+<hibernate-mapping package="com.kelvin.eshop.goods.entity">
+
+<!--    https://www.baeldung.com/hibernate-custom-types-->
+
+    <class name="Goods" table="goods">
+        <id name="id" column="id" length="32" type="string">
+            <generator class="uuid"></generator>
+        </id>
+        <property name="intro" column="intro" type="text"/>
+
+        <property name="questions" column="questions" type="text"/>
+        <one-to-one name="category" class="Category"/>
+        <set name="goodsAttributes" inverse="true">
+            <key column="goods_id" not-null="true"/>
+            <one-to-many class="GoodsAttribute"/>
+        </set>
+        <set name="goodsSkus">
+            <key column="goods_id" not-null="true"/>
+            <one-to-many class="GoodsSku"/>
+        </set>
+    </class>
+
+
+    <class name="GoodsSku" table="goods_sku">
+        <id name="id" column="id" length="32" type="string">
+            <generator class="uuid"></generator>
+        </id>
+        <property name="attributes" column="attribute" length="255" type="string"/>
+        <property name="bannerImages" column="banner_images" length="1200" type="string"/>
+        <property name="description" column="description" length="255" type="string"/>
+        <property name="price" column="price" length="16" type="string"/>
+        <property name="salesVolume" column="sales_volume" type="integer"/>
+        <property name="specs" column="specs" type="text"/>
+        <property name="stock" column="stock" type="integer"/>
+        <property name="title" column="title" length="255" type="string"/>
+        <many-to-one name="goods"  not-null="true" lazy="proxy"/>
+    </class>
+    <class name="GoodsAttribute" table="goods_attribute">
+
+        <id name="id" column="id" length="32" type="string">
+            <generator class="uuid"></generator>
+        </id>
+        <property name="code" column="code" length="32" type="string"/>
+        <property name="name" column="name" length="32" type="string"/>
+        <property name="items" column="items" >
+            <type name="com.vladmihalcea.hibernate.type.json.JsonStringType">
+                <param name="org.hibernate.type.ParameterType.dynamic">true</param>
+<!--                <param name="org.hibernate.type.ParameterType"></param>-->
+                <param name="org.hibernate.type.ParameterType.returnedClass">com.kelvin.eshop.goods.entity.GoodsAttribute$Item</param>
+            </type>
+        </property>
+        <many-to-one name="goods" class="Goods"/>
+
+    </class>
+
+</hibernate-mapping>

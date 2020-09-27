@@ -23,3 +23,18 @@ spring:
     hibernate:
       ddl-auto: update
     generate-ddl: true
+    mapping-resources:
+      - orm/goods.hbm.xml
+      - orm/category.hbm.xml
+      - orm/promotion.hbm.xml
+      - orm/advertisement.hbm.xml
+      - orm/coupon.hbm.xml
+      - orm/comment.hbm.xml
+      - orm/special_column.hbm.xml
+
+  zipkin:
+    base-url: http://192.168.3.22:9411
+    discovery-client-enabled: false
+  sleuth:
+    sampler:
+      probability: 1.0 #采样百分比

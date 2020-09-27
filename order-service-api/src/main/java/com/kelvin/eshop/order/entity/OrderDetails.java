@@ -1,9 +1,12 @@
 package com.kelvin.eshop.order.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @author: Kelvin Yeuung
@@ -11,8 +14,9 @@ import javax.persistence.*;
  * @description:
  */
 @Data
-
-public class OrderDetails {
+@NoArgsConstructor
+@AllArgsConstructor
+public class OrderDetails implements Serializable {
 
     private String id;
 

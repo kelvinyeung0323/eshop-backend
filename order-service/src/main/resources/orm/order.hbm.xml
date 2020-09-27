@@ -4,14 +4,15 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!--https://github.com/damienbeaufils/spring-boot-clean-architecture-demo/blob/master/src/main/resources/db/mappings/dummy.xml-->
 <!--<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" version="2.0">-->
-<hibernate-mapping package="com.kelvin.eshop.order.entity" >
+<hibernate-mapping package="com.kelvin.eshop.order.entity">
 
     <!-- 参考:https://docs.jboss.org/hibernate/orm/5.4/userguide/html_single/Hibernate_User_Guide.html#identifiers-->
-    <class entity-name="com.kelvin.eshop.order.entity.Order" table="user_order">
+    <class entity-name="com.kelvin.eshop.order.entity.Order" table="user_order" name="com.kelvin.eshop.order.entity.Order" >
+
         <id name="orderNo" column="order_no" length="32" type="string">
             <generator class="com.kelvin.eshopbackend.base.common.idgenerator.OrderGenerator"/>
         </id>
-        <property name="userId" column="user_id" length="32" type="string"/>
+        <property name="userId" column="user_id" length="32" type="string" />
         <!--    收货人地址-->
         <property name="address" column="address" length="255" type="string"/>
         <!--收货人电话-->
@@ -47,7 +48,7 @@
     </class>
 
 
-    <class entity-name="com.kelvin.eshop.order.entity.OrderDetails" table="order_details">
+    <class entity-name="com.kelvin.eshop.order.entity.OrderDetails" table="order_details" name="OrderDetails">
         <id name="id" length="32" column="id" type="string">
             <generator class="uuid">
             </generator>
@@ -61,7 +62,7 @@
     </class>
 
 
-    <class entity-name="com.kelvin.eshop.order.entity.CartItem" table="cart">
+    <class entity-name="com.kelvin.eshop.order.entity.CartItem" table="cart" name="CartItem">
         <id name="id" column="id" length="32" type="string">
             <generator class="uuid"></generator>
         </id>

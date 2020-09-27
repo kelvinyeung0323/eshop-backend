@@ -2,8 +2,11 @@ package com.kelvin.eshop.order.entity;
 
 
 import com.kelvin.eshopbackend.base.enums.OrderStatus;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +16,9 @@ import java.util.List;
  * @description:
  */
 @Data
-public class Order {
+@NoArgsConstructor
+@AllArgsConstructor
+public class Order implements Serializable {
 
     private String orderNo;
     private String userId;

@@ -1,6 +1,10 @@
 package com.kelvin.eshop.order.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 
 /**
  * @author: Kelvin Yeuung
@@ -8,7 +12,9 @@ import lombok.Data;
  * @description:
  */
 @Data
-public class CartItem {
+@NoArgsConstructor
+@AllArgsConstructor
+public class CartItem implements Serializable {
 
 
     private String id;
